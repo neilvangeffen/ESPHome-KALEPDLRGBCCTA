@@ -29,7 +29,7 @@ ota:
 
 # This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: github://neilvangeffen/ESPHome-KASB10RE27HA/project-template-kalepdlrgbccta.yaml@main
+  package_import_url: github://neilvangeffen/ESPHome-KALEPDLRGBCCTA/project-template-kalepdlrgbccta.yaml@main
 
 wifi:
   # Set up a wifi access point
