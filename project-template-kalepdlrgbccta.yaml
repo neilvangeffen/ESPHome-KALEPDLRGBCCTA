@@ -1,0 +1,93 @@
+# These substitutions allow the end user to override certain values
+substitutions:
+  name: "kogan-rgbcct"
+  friendly_name: "Kogan RGBCCT"
+
+esphome:
+  name: "${name}"
+  # Automatically add the mac address to the name
+  # so you can use a single firmware for all devices
+  name_add_mac_suffix: true
+
+  # This will allow for (future) project identification,
+  # configuration and updates.
+  project:
+    name: ned.kogan-rgbcct
+    version: "1.0"
+
+esp8266:
+  board: esp01_1m
+
+# To be able to get logs from the device via serial and api.
+logger:
+
+# API is a requirement of the dashboard import.
+api:
+
+# OTA is required for Over-the-Air updating
+ota:
+
+# This should point to the public location of this yaml file.
+dashboard_import:
+  package_import_url: github://neilvangeffen/ESPHome-KASB10RE27HA/project-template-kalepdlrgbccta.yaml@main
+
+wifi:
+  # Set up a wifi access point
+  ap:
+    password: "12345678"
+
+# Web server is a nice thing to be able to login and look at status/upload firmware etc
+web_server: 
+  port: 80
+
+# In combination with the `ap` this allows the user
+# to provision wifi credentials to the device.
+captive_portal:
+
+# Sets up the improv via serial client for Wi-Fi provisioning
+improv_serial:
+
+binary_sensor:
+  - platform: status
+    name: "${friendly_name} Status"   # API Status of the device
+
+text_sensor:
+  - platform: version
+    name: "${friendly_name} ESPHome Version"
+
+sensor:
+  - platform: wifi_signal
+    name: "${friendly_name} WiFi Signal"
+    update_interval: 60s
+
+  - platform: uptime
+    name: "${friendly_name} Uptime"
+    
+# Example configuration entry
+light:
+  - platform: rgbww
+    name: "${friendly_name}"
+    red: output_red
+    green: output_green
+    blue: output_blue
+    cold_white: output_cold
+    warm_white: output_warm
+    restore_mode: RESTORE_DEFAULT_ON 
+
+# Example output entry
+output:
+  - platform: esp8266_pwm
+    id: output_red
+    pin: GPIO5
+  - platform: esp8266_pwm
+    id: output_green
+    pin: GPIO4
+  - platform: esp8266_pwm
+    id: output_blue
+    pin: GPIO13
+  - platform: esp8266_pwm
+    id: output_cold
+    pin: GPIO14
+  - platform: esp8266_pwm
+    id: output_warm
+    pin: GPIO12

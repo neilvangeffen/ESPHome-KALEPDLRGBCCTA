@@ -1,6 +1,6 @@
 # About
 
-Add some information about your project here.
+ESP Home file for flashing to your Kogan 9W RGBCCT Downlight (KALEPDLRGBCCTA)
 
 # Installation
 
