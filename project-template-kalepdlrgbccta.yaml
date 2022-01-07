@@ -74,7 +74,6 @@ light:
     warm_white: output_warm
     restore_mode: RESTORE_DEFAULT_ON 
     constant_brightness: true
-    color_interlock: true
 
 # Example output entry
 output:
