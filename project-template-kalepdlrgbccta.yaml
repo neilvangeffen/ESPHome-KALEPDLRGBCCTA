@@ -13,7 +13,7 @@ esphome:
   # configuration and updates.
   project:
     name: ned.kogan-rgbcct
-    version: "1.0"
+    version: "1.1"
 
 esp8266:
   board: esp01_1m
@@ -72,8 +72,8 @@ light:
     blue: output_blue
     cold_white: output_cold
     warm_white: output_warm
-    cold_white_color_temperature: 6500 K    #estimates to try get the colour temp math to not fail
-    warm_white_color_temperature: 2700 K
+    cold_white_color_temperature: 5000 K    #From Kogan Listing
+    warm_white_color_temperature: 3000 K
     restore_mode: RESTORE_DEFAULT_ON 
     constant_brightness: true
 
