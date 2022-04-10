@@ -2,7 +2,7 @@
   "chipFamily": "ESP8266",
   "parts": [
     {
-      "path": "kogan-rgbcct/firmware.bin",
+      "path": "kogan-rgbcct-esp8266/kogan-rgbcct-esp8266.bin",
       "offset": 0
     }
   ]
