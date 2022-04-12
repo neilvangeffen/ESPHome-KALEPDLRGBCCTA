@@ -1,3 +1,4 @@
+# https://www.dicksmith.co.nz/dn/buy/kogan-smarterhome-smart-led-downlight-rgb-cool-warm-white-4-pack/
 # These substitutions allow the end user to override certain values
 substitutions:
   name: "kogan-rgbcct"
@@ -13,10 +14,13 @@ esphome:
   # configuration and updates.
   project:
     name: ned.kogan-rgbcct
-    version: "1.1"
+    version: "1.32.0"
 
-esp8266:
-  board: esp01_1m
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+    version: recommended
 
 # To be able to get logs from the device via serial and api.
 logger:
@@ -29,7 +33,7 @@ ota:
 
 # This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: github://neilvangeffen/ESPHome-KALEPDLRGBCCTA/project-template-kalepdlrgbccta.yaml@main
+  package_import_url: github://neilvangeffen/ESPHome-KALEPDLRGBCCTA/project-template-kalepdlrgbccta.yaml@esp32
 
 wifi:
   # Set up a wifi access point
@@ -78,19 +82,43 @@ light:
     constant_brightness: true
 
 # Example output entry
+# ESP32-C3-12F Pins:
+# - GPIO0        |  (TX) GPIO21 -
+# - GPIO1        | (PWM) GPIO20 -
+# - Reset        |       GPIO19 -
+# - GPIO2 (PWM)  | (PWM) GPIO18 -
+# - GPIO3 (PWM)  |        GPIO9 -
+# - GPIO4        | (PWM) GPIO10 -
+# - GPIO4        | (PWM)  GPIO8 -
+# - 3V3          |          GND -
+# | NC, | GPIO7 (PWM), | GPIO6 (PWM), | NC, | NC, | NC
+#
+# Kogan Pinout:
+# P -> GPIO19
+# C -> GPIO5
+# G -> GPIO4
+# R -> GPIO18 (PWM)
+# B -> GPIO3  (PWM)
+#
+# Ned Pinout:
+# P -> GPIO3  (PWM)
+# C -> GPIO2  (PWM)
+# G -> GPIO18 (PWM)
+# R -> GPIO10 (PWM)
+# B -> GPIO8  (PWM)
 output:
-  - platform: esp8266_pwm
+  - platform: ledc
     id: output_red
-    pin: GPIO5
-  - platform: esp8266_pwm
+    pin: GPIO10
+  - platform: ledc
     id: output_green
-    pin: GPIO4
-  - platform: esp8266_pwm
+    pin: GPIO18
+  - platform: ledc
     id: output_blue
-    pin: GPIO13
-  - platform: esp8266_pwm
+    pin: GPIO8
+  - platform: ledc
     id: output_cold
-    pin: GPIO14
-  - platform: esp8266_pwm
+    pin: GPIO2
+  - platform: ledc
     id: output_warm
-    pin: GPIO12
+    pin: GPIO3
