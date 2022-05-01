@@ -3,9 +3,13 @@
 substitutions:
   name: "kogan-rgbcct"
   friendly_name: "Kogan RGBCCT"
-
+  
 esphome:
   name: "${name}"
+  platformio_options:
+    board_build.f_flash: 40000000L
+    board_build.flash_mode: dio
+    board_build.flash_size: 4MB
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
@@ -17,6 +21,7 @@ esphome:
     version: "1.32.0"
 
 esp32:
+  variant: ESP32C3
   board: esp32-c3-devkitm-1
   framework:
     type: esp-idf
@@ -39,14 +44,6 @@ wifi:
   # Set up a wifi access point
   ap:
     password: "12345678"
-
-# Web server is a nice thing to be able to login and look at status/upload firmware etc
-web_server: 
-  port: 80
-
-# In combination with the `ap` this allows the user
-# to provision wifi credentials to the device.
-captive_portal:
 
 # Sets up the improv via serial client for Wi-Fi provisioning
 improv_serial:
