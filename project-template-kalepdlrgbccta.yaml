@@ -18,7 +18,7 @@ esphome:
   # configuration and updates.
   project:
     name: ned.kogan-rgbcct
-    version: "1.32.0"
+    version: "1.32.1"
 
 esp32:
   variant: ESP32C3
