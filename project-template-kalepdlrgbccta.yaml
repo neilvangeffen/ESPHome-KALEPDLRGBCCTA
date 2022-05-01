@@ -64,15 +64,14 @@ sensor:
   - platform: uptime
     name: "${friendly_name} Uptime"
     
-# Example configuration entry
 light:
-  - platform: rgbww
+  - platform: rgbct
     name: "${friendly_name}"
     red: output_red
     green: output_green
     blue: output_blue
-    cold_white: output_cold
-    warm_white: output_warm
+    color_temperature: output_col_temp
+    white_brightness: output_white_bright
     cold_white_color_temperature: 5000 K    #From Kogan Listing
     warm_white_color_temperature: 3000 K
     restore_mode: RESTORE_DEFAULT_ON 
@@ -114,8 +113,8 @@ output:
     id: output_blue
     pin: GPIO8
   - platform: ledc
-    id: output_cold
+    id: output_col_temp
     pin: GPIO2
   - platform: ledc
-    id: output_warm
+    id: output_white_bright
     pin: GPIO3
