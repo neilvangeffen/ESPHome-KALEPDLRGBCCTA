@@ -1,4 +1,4 @@
-# ESPHome Project Template
+# KALEPDLRGBCCTA for ESPHome Project
 
 This repo serves as a template for creating a new ESPHome project.
 
